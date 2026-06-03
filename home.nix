@@ -48,5 +48,12 @@
         init.defaultBranch = "main";
       };
     };
+
+    ssh = {
+      enable = true;
+      matchBlocks."*" = {
+        addKeysToAgent = "yes";
+      };
+    };
   };
 }
