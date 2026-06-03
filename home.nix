@@ -52,7 +52,7 @@
     ssh = {
       enable = true;
       programs.ssh.enableDefaultConfig = false;
-      matchBlocks."*" = {
+      settings."*" = {
         addKeysToAgent = "yes";
       };
     };
