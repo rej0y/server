@@ -31,6 +31,11 @@
 
     bash = {
       enable = true;
+      initExtra = ''
+        g() {
+          git add -A && git commit -m "$*"
+        }
+      '';
     };
 
     git = {
