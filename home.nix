@@ -37,11 +37,6 @@
         }
 
         ns() {
-          if [[ $# -eq 0 ]]; then
-            echo 'usage: ns "commit message"'
-            return 1
-          fi
-
           local msg="$*"
 
           git add -A &&
