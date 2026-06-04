@@ -35,6 +35,20 @@
         g() {
           git add -A && git commit -m "$*"
         }
+
+        ns() {
+          if [[ $# -eq 0 ]]; then
+            echo 'usage: ns "commit message"'
+            return 1
+          fi
+
+          local msg="$*"
+
+          git add -A &&
+          git commit -m "$msg" &&
+          git push &&
+          sudo nixos-rebuild switch
+        }
       '';
     };
 
