@@ -25,6 +25,14 @@ let
       cp -r . $out/share/atm10
     '';
   };
+
+  atm10JvmArgs = pkgs.writeText "atm10-user_jvm_args.txt" ''
+    -Xms4G
+    -Xmx20G
+    -XX:+UseZGC
+    -XX:+ZGenerational
+    -XX:+DisableExplicitGC
+  '';
 in
 {
   users = {
@@ -69,6 +77,7 @@ in
 
       echo "ATM10 pack installed"
       echo "eula=true" > eula.txt
+      install -m 0640 ${atm10JvmArgs} user_jvm_args.txt
       exec ./startserver.sh
     '';
   };
