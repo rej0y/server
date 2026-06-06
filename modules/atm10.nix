@@ -15,7 +15,7 @@
 
     path = with pkgs; [
       jdk21_headless
-    ]
+    ];
 
     serviceConfig = {
       User = "atm10";
