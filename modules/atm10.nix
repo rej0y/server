@@ -54,7 +54,6 @@ in
       Environment = [
         "ATM10_JAVA=${pkgs.jdk21_headless}/bin/java"
         "ATM10_RESTART=false"
-        "ATM10_INSTALL_ONLY=true"
       ];
     };
 
