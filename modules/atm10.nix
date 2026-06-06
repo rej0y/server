@@ -52,12 +52,17 @@ in
     };
 
     script = ''
-      echo "ATM10 service test"
-      echo "user: $(id)"
-      echo "pwd: $(pwd)"
-      echo "zip: ${atm10ServerZip}"
-      echo "pack: ${atm10Pack}"
-      ls -la ${atm10Pack}/share/atm10
+      echo "Installing ATM10 pack into /var/lib/atm10"
+
+      if [ ! -f .pack-version ] || [ "$(cat .pack-version)" != "${atm10Version}" ]; then
+        cp -r --no-preserve=mode,ownership ${atm10Pack}/share/atm10/. /var/lib/atm10/
+        chmod -R u+rwX,g+rX,o-rwx /var/lib/atm10
+        chmod +x /var/lib/atm10/startserver.sh
+        echo "${atm10Version}" > /var/lib/atm10/.pack-version
+      fi
+
+      echo "ATM10 pack installed"
+      ls -la /var/lib/atm10
       java -version
     '';
   };
