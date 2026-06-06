@@ -13,6 +13,10 @@
   systemd.services.atm10 = {
     description = "All The Mods 10 Minecraft Server";
 
+    path = with pkgs; [
+      jdk21_headless
+    ]
+
     serviceConfig = {
       User = "atm10";
       Group = "atm10";
@@ -24,7 +28,7 @@
       echo "ATM10 service test"
       echo "user: $(id)"
       echo "pwd: $(pwd)"
-      ls -ld /var/lib/atm10
+      java -version
     '';
   };
 }
