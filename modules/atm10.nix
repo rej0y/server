@@ -41,6 +41,8 @@ in
     wantedBy = [ "multi-user.target" ];
 
     path = with pkgs; [
+      coreutils
+      gawk
       jdk21_headless
     ];
 
@@ -49,6 +51,11 @@ in
       Group = "atm10";
       StateDirectory = "atm10";
       WorkingDirectory = "/var/lib/atm10";
+      Environment = [
+        "ATM10_JAVA=${pkgs.jdk21_headless}/bin/java"
+        "ATM10_RESTART=false"
+        "ATM10_INSTALL_ONLY=true"
+      ];
     };
 
     script = ''
@@ -62,8 +69,8 @@ in
       fi
 
       echo "ATM10 pack installed"
-      ls -la /var/lib/atm10
-      java -version
+      echo "eula=true" > eula.txt
+      exec ./startserver.sh
     '';
   };
 }
