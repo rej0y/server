@@ -11,7 +11,7 @@
   };
 
   systemd.services.atm10 = {
-    description = "All The Mods 10 Minecraft Server"
+    description = "All The Mods 10 Minecraft Server";
 
     serviceConfig = {
       User = "atm10";
