@@ -2,9 +2,28 @@
 
 let
   atm10Version = "7.0";
+  atm10CdnPath = "8094/893";
+  atm10FileName = "ServerFiles-${atm10Version}.zip";
+
   atm10ServerZip = pkgs.fetchurl {
-    url = "https://mediafilez.forgecdn.net/files/8094/893/ServerFiles-7.0.zip";
+    url = "https://mediafilez.forgecdn.net/files/${atm10CdnPath}/${atm10FileName}";
     hash = "sha256-b3xzqChHx5YcrF2cV5svL096K2RtqA84soyKQG4nn2A=";
+  };
+
+  atm10Pack = pkgs.stdenvNoCC.mkDerivation {
+    pname = "atm10-server-pack";
+    version = atm10Version;
+    src = atm10ServerZip;
+    nativeBuildInputs = with pkgs; [ unzip ];
+    unpackPhase = ''
+      mkdir source
+      cd source
+      unzip -q "$src"
+    '';
+    installPhase = ''
+      mkdir -p $out/share/atm10
+      cp -r . $out/share/atm10
+    '';
   };
 in
 {
@@ -37,6 +56,8 @@ in
       echo "user: $(id)"
       echo "pwd: $(pwd)"
       echo "zip: ${atm10ServerZip}"
+      echo "pack: ${atm10Pack}"
+      ls -la ${atm10Pack}/share/atm10
       java -version
     '';
   };
