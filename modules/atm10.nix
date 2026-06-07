@@ -46,7 +46,7 @@ let
     enable-jmx-monitoring=false
     enable-query=false
     enable-rcon=true
-    rcon.password=123456
+    rcon.password=a-password
     rcon.port=25575
     enable-status=true
     enforce-secure-profile=true
