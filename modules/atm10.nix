@@ -46,8 +46,6 @@ let
     enable-jmx-monitoring=false
     enable-query=false
     enable-rcon=true
-    rcon.password=a-password
-    rcon.port=25575
     enable-status=true
     enforce-secure-profile=true
     enforce-whitelist=false
@@ -78,7 +76,7 @@ let
     pvp=true
     query.port=25565
     rate-limit=0
-    rcon.password=
+    rcon.password=123456
     rcon.port=25575
     region-file-compression=deflate
     require-resource-pack=false
