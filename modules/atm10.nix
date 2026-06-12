@@ -28,7 +28,7 @@ let
 
   atm10JvmArgs = pkgs.writeText "atm10-user_jvm_args.txt" ''
     -Xms4G
-    -Xmx20G
+    -Xmx32G
     -XX:+UseZGC
     -XX:+ZGenerational
     -XX:+DisableExplicitGC
