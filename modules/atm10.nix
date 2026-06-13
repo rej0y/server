@@ -42,8 +42,8 @@ let
     motd=All the Mods 10
     online-mode=true
     server-port=25565
-    simulation-distance=8
-    view-distance=8
+    simulation-distance=10
+    view-distance=12
     white-list=false
   '';
 in
