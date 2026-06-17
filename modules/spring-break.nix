@@ -22,7 +22,7 @@ in
   };
 
   systemd.services.spring-break = {
-    description = "Spring Break Paper Minecraft Server";
+    description = "Spring Break Minecraft Server";
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
