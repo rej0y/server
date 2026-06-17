@@ -38,6 +38,13 @@
             localPort = 25566;
             remotePort = 25566;
           }
+          {
+            name = "spring-break-bedrock";
+            type = "udp";
+            localIP = "127.0.0.1";
+            localPort = 19132;
+            remotePort = 19132;
+          }
         ];
       };
     };
