@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/frp.nix
-    ./modules/atm10.nix
   ];
 
   nix.settings.experimental-features = [

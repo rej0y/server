@@ -22,7 +22,7 @@
       };
     };
 
-    atm10 = {
+    spring-break = {
       enable = true;
       role = "client";
 
@@ -32,11 +32,11 @@
 
         proxies = [
           {
-            name = "atm10";
+            name = "spring-break";
             type = "tcp";
             localIP = "127.0.0.1";
-            localPort = 25565;
-            remotePort = 25565;
+            localPort = 25566;
+            remotePort = 25566;
           }
         ];
       };
