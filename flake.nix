@@ -27,6 +27,7 @@
             extraSpecialArgs = { inherit inputs; };
             users = {
               rej0y = import ./home/rej0y.nix;
+              parker = import ./home/parker.nix;
             };
           };
         }
