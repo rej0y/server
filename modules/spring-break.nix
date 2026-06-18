@@ -5,11 +5,16 @@ let
   paperVersion = "26.1.2";
   paperBuild = "70";
   paperHash = "6c59eefe2752f97ee79f83ad0a61fe14865a0976e4ac06597f53de6c44afd6c5";
+  paperSriHash = builtins.convertHash {
+    hash = paperHash;
+    hashAlgo = "sha256";
+    toHashFormat = "sri";
+  };
 
   serverJar = pkgs.fetchurl {
     name = "paper-${paperVersion}-${paperBuild}.jar";
     url = "https://fill-data.papermc.io/v1/objects/${paperHash}/paper-${paperVersion}-${paperBuild}.jar";
-    hash = "sha256-${paperHash}";
+    hash = paperSriHash;
     curlOptsList = [
       "-A"
       "spring-break-server/1.0 (https://github.com/rej0y/server)"
