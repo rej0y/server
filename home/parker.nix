@@ -69,7 +69,7 @@
 #          identityFile = "~/.ssh/deploy-ro-altruist";
 #          identitiesOnly = true;
 #        };
-      };
+#      };
     };
   };
 }
