@@ -25,7 +25,9 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = { inherit inputs; };
-            users.rej0y = import ./home.nix;
+            users = {
+              rej0y = import ./home/rej0y.nix;
+            };
           };
         }
       ];
