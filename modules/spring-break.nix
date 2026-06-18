@@ -9,7 +9,6 @@ let
   memoryArgs = [ "-Xms2G" "-Xmx16G" ];
   jvmArgs = [
     "-XX:+UseZGC"
-    "-XX:+ZGenerational"
     "-XX:+DisableExplicitGC"
   ];
 in
