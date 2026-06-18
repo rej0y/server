@@ -2,8 +2,8 @@
 
 {
   home = {
-    username = "rej0y";
-    homeDirectory = "/home/rej0y";
+    username = "parker";
+    homeDirectory = "/home/parker";
     stateVersion = "26.05";
 
     packages = with pkgs; [
@@ -51,8 +51,8 @@
       enable = true;
       settings = {
         user = {
-          name = "rej0y";
-          email = "zhoushengjian1@gmail.com";
+          name = "ShadowKnight-13";
+          email = "padrago@yahoo.com";
         };
         
         url = {
@@ -67,7 +67,7 @@
       enable = true;
       enableDefaultConfig = false;
       settings = {
-        "github-altruist" = {
+        "github-altruist-ro" = {
           hostname = "github.com";
           user = "git";
           identityFile = "~/.ssh/deploy-ro-altruist";
