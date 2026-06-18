@@ -37,11 +37,7 @@
         }
 
         ns() {
-          local msg="$*"
-
-          git add -A &&
-          git commit -m "$msg" &&
-          git push &&
+          git pull &&
           sudo nixos-rebuild switch
         }
       '';
@@ -66,13 +62,13 @@
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      settings = {
-        "github-altruist-ro" = {
-          hostname = "github.com";
-          user = "git";
-          identityFile = "~/.ssh/deploy-ro-altruist";
-          identitiesOnly = true;
-        };
+#      settings = {
+#        "github-altruist-ro" = {
+#          hostname = "github.com";
+#          user = "git";
+#          identityFile = "~/.ssh/deploy-ro-altruist";
+#          identitiesOnly = true;
+#        };
       };
     };
   };

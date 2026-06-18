@@ -23,12 +23,19 @@
     networkmanager.enable = true;
   };
 
-  users.users.rej0y = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINpkmA0Ako1CSQTj2grWHPC55etVCaepAIs+qv9ljbAF rej0y@charity"
-    ];
+  users.users = {
+    rej0y = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" ];
+        openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINpkmA0Ako1CSQTj2grWHPC55etVCaepAIs+qv9ljbAF rej0y@charity"
+        ];
+    };
+
+    parker = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" ];
+    };
   };
 
   security.rtkit.enable = true;
