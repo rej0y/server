@@ -37,11 +37,7 @@
         }
 
         ns() {
-          local msg="$*"
-
-          git add -A &&
-          git commit -m "$msg" &&
-          git push &&
+          git pull &&
           sudo nixos-rebuild switch
         }
       '';
