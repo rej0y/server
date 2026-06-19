@@ -5,7 +5,6 @@
     username = "rej0y";
     homeDirectory = "/home/rej0y";
     stateVersion = "26.05";
-
     packages = with pkgs; [
       kitty
     ];
@@ -32,13 +31,9 @@
     bash = {
       enable = true;
       initExtra = ''
-        g() {
-          git add -A && git commit -m "$*"
-        }
-
         ns() {
-          git pull &&
-          sudo nixos-rebuild switch --flake .#altruist
+          sudo git -C /etc/nixos pull &&
+          sudo nixos-rebuild switch --flake /etc/nixos#altruist
         }
       '';
     };
@@ -54,7 +49,6 @@
           "git@github.com:".insteadOf = [ "https://github.com/" ];
         };
         init.defaultBranch = "main";
-        safe.directory = [ "/etc/nixos" ];
       };
     };
 

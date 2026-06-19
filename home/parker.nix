@@ -5,7 +5,6 @@
     username = "parker";
     homeDirectory = "/home/parker";
     stateVersion = "26.05";
-
     packages = with pkgs; [
       kitty
     ];
@@ -32,13 +31,9 @@
     bash = {
       enable = true;
       initExtra = ''
-        g() {
-          git add -A && git commit -m "$*"
-        }
-
         ns() {
-          git pull &&
-          sudo nixos-rebuild switch
+          sudo git -C /etc/nixos pull &&
+          sudo nixos-rebuild switch --flake /etc/nixos#altruist
         }
       '';
     };
@@ -54,21 +49,20 @@
           "git@github.com:".insteadOf = [ "https://github.com/" ];
         };
         init.defaultBranch = "main";
-        safe.directory = [ "/etc/nixos" ];
       };
     };
 
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-#      settings = {
-#        "github-altruist-ro" = {
-#          hostname = "github.com";
-#          user = "git";
-#          identityFile = "~/.ssh/deploy-ro-altruist";
-#          identitiesOnly = true;
-#        };
-#      };
+      settings = {
+        "github-altruist-ro" = {
+          hostname = "github.com";
+          user = "git";
+          identityFile = "~/.ssh/deploy-ro-altruist";
+          identitiesOnly = true;
+        };
+      };
     };
   };
 }
