@@ -50,12 +50,11 @@
           name = "ShadowKnight-13";
           email = "padrago@yahoo.com";
         };
-        
         url = {
           "git@github.com:".insteadOf = [ "https://github.com/" ];
         };
-
         init.defaultBranch = "main";
+        safe.directory = [ "/etc/nixos" ];
       };
     };
 

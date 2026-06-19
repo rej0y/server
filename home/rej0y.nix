@@ -50,12 +50,11 @@
           name = "rej0y";
           email = "zhoushengjian1@gmail.com";
         };
-        
         url = {
           "git@github.com:".insteadOf = [ "https://github.com/" ];
         };
-
         init.defaultBranch = "main";
+        safe.directory = [ "/etc/nixos" ];
       };
     };
 
