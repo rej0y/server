@@ -44,6 +44,7 @@
   security.rtkit.enable = true;
 
   environment.systemPackages = with pkgs; [
+    git
   ];
 
   services = {
