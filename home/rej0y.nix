@@ -55,14 +55,6 @@
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      settings = {
-        "github-altruist-ro" = {
-          hostname = "github.com";
-          user = "git";
-          identityFile = "~/.ssh/deploy-ro-altruist";
-          identitiesOnly = true;
-        };
-      };
     };
   };
 }
