@@ -4,8 +4,8 @@ let
   serverDir = "/var/lib/spring-break";
 
   paperVersion = "26.1.2";
-  paperBuild = "70";
-  paperHash = "6c59eefe2752f97ee79f83ad0a61fe14865a0976e4ac06597f53de6c44afd6c5";
+  paperBuild = "72";
+  paperHash = "0555a0b0468a5198d8fb1a16e1f9e95c81a917a2dc8f2e09867b4044742f6401";
 
   java = "${pkgs.jdk25}/bin/java";
   memoryArgs = [ "-Xms2G" "-Xmx16G" ];
