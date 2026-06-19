@@ -38,20 +38,6 @@
       '';
     };
 
-    git = {
-      enable = true;
-      settings = {
-        user = {
-          name = "rej0y";
-          email = "zhoushengjian1@gmail.com";
-        };
-        url = {
-          "git@github.com:".insteadOf = [ "https://github.com/" ];
-        };
-        init.defaultBranch = "main";
-      };
-    };
-
     ssh = {
       enable = true;
       enableDefaultConfig = false;
