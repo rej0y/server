@@ -10,7 +10,6 @@ let
   java = {
     exec = "${pkgs.jdk25}/bin/java";
     args = [
-      "-Xms2G"
       "-Xmx16G"
       "-XX:+UseZGC"
       "-XX:+DisableExplicitGC"
