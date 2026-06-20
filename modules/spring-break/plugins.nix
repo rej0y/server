@@ -1,40 +1,46 @@
 { pkgs }:
 
 let
-  geyserVersion = "2.10.1";
-  geyserBuild = "1172";
-  geyserHash = "sha256-GpNsemqfisJBcY9RMcgRMKqf1IIiRwZFm/Mn+fyjlzU=";
+  geyser = {
+    version = "2.10.1";
+    build = "1172";
+    hash = "sha256-GpNsemqfisJBcY9RMcgRMKqf1IIiRwZFm/Mn+fyjlzU=";
+  };
 
-  floodgateVersion = "2.2.5";
-  floodgateBuild = "133";
-  floodgateHash = "sha256-RrTrLVa9zxvI+hs+O1OOPQ0ZzMDKb+plaZP0wu1HJcY=";
+  floodgate = {
+    version = "2.2.5";
+    build = "133";
+    hash = "sha256-RrTrLVa9zxvI+hs+O1OOPQ0ZzMDKb+plaZP0wu1HJcY=";
+  };
 
-  blockLockerVersion = "1.14.1";
-  blockLockerHash = "sha256-430jmDW0e5GkkQP9kNcREJb6KwD/Dqg1smQaORxkvrk=";
+  blockLocker = {
+    version = "1.14.1";
+    hash = "sha256-430jmDW0e5GkkQP9kNcREJb6KwD/Dqg1smQaORxkvrk=";
+  };
 in
 [
   {
     fileName = "Geyser-Spigot.jar";
     jar = pkgs.fetchurl {
-      name = "Geyser-Spigot-${geyserVersion}-${geyserBuild}.jar";
-      url = "https://download.geysermc.org/v2/projects/geyser/versions/${geyserVersion}/builds/${geyserBuild}/downloads/spigot";
-      hash = geyserHash;
+      name = "Geyser-Spigot-${geyser.version}-${geyser.build}.jar";
+      url = "https://download.geysermc.org/v2/projects/geyser/versions/${geyser.version}/builds/${geyser.build}/downloads/spigot";
+      hash = geyser.hash;
     };
   }
   {
     fileName = "floodgate-spigot.jar";
     jar = pkgs.fetchurl {
-      name = "floodgate-spigot-${floodgateVersion}-${floodgateBuild}.jar";
-      url = "https://download.geysermc.org/v2/projects/floodgate/versions/${floodgateVersion}/builds/${floodgateBuild}/downloads/spigot";
-      hash = floodgateHash;
+      name = "floodgate-spigot-${floodgate.version}-${floodgate.build}.jar";
+      url = "https://download.geysermc.org/v2/projects/floodgate/versions/${floodgate.version}/builds/${floodgate.build}/downloads/spigot";
+      hash = floodgate.hash;
     };
   }
   {
     fileName = "blocklocker.jar";
     jar = pkgs.fetchurl {
-      name = "blocklocker-${blockLockerVersion}.jar";
-      url = "https://hangarcdn.papermc.io/plugins/Rutger/BlockLocker/versions/${blockLockerVersion}/PAPER/blocklocker-${blockLockerVersion}.jar";
-      hash = blockLockerHash;
+      name = "blocklocker-${blockLocker.version}.jar";
+      url = "https://hangarcdn.papermc.io/plugins/Rutger/BlockLocker/versions/${blockLocker.version}/PAPER/blocklocker-${blockLocker.version}.jar";
+      hash = blockLocker.hash;
     };
   }
 ]
