@@ -12,11 +12,6 @@ let
     "-XX:+DisableExplicitGC"
   ];
 
-  plugins = import ./plugins.nix { inherit pkgs; };
-  linkPlugins = map (plugin:
-    "${pkgs.coreutils}/bin/ln -sfn ${plugin.jar} ${serverDir}/plugins/${plugin.fileName}"
-  ) plugins;
-
   serverDir = "/var/lib/spring-break";
   serverJar = pkgs.fetchurl {
     name = "paper-${paperVersion}-${paperBuild}.jar";
@@ -28,6 +23,9 @@ let
       toHashFormat = "sri";
     };
   };
+
+  plugins = import ./plugins.nix { inherit pkgs; };
+  linkPlugins = map (plugin: "${pkgs.coreutils}/bin/ln -sfn ${plugin.jar} ${serverDir}/plugins/${plugin.fileName}") plugins;
 in
 {
   users.groups.spring-break = {};
