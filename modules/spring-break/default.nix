@@ -30,6 +30,17 @@ let
       };
     };
   };
+
+  plugins = rec {
+    jars = import ./plugins.nix { inherit pkgs; };
+    install = pkgs.writeShellScript "install-plugins" ''
+      set -eu
+      ${pkgs.coreutils}/bin/mkdir -p ${server.dir}/plugins
+      ${lib.concatMapStringsSep "\n" (plugin: ''
+        ${pkgs.coreutils}/bin/ln -sfT ${plugin.jar} ${server.dir}/plugins/${plugin.fileName}
+      '') jars}
+    '';
+  };
 in
 {
   users.groups.spring-break = {};
@@ -50,6 +61,7 @@ in
       WorkingDirectory = server.dir;
       Restart = "on-failure";
       RestartSec = "15s";
+      ExecStartPre = plugins.install;
       ExecStart = "${java.exec} ${lib.escapeShellArgs (java.args ++ [ "-jar" server.jar "nogui" ])}";
       SuccessExitStatus = "0 143";
     };
