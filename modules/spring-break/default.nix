@@ -55,7 +55,6 @@ in
   systemd.services.spring-break = {
     description = "Spring Break Minecraft Server";
     wantedBy = [ "multi-user.target" ];
-
     serviceConfig = {
       User = "spring-break";
       Group = "spring-break";
