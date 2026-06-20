@@ -3,7 +3,7 @@
 let
   paperVersion = "26.1.2";
   paperBuild = "72";
-  paperHash = "0555a0b0468a5198d8fb1a16e1f9e95c81a917a2dc8f2e09867b4044742f6401";
+  paperSha256 = "0555a0b0468a5198d8fb1a16e1f9e95c81a917a2dc8f2e09867b4044742f6401";
 
   java = "${pkgs.jdk25}/bin/java";
   memoryArgs = [ "-Xms2G" "-Xmx16G" ];
@@ -15,10 +15,10 @@ let
   serverDir = "/var/lib/spring-break";
   serverJar = pkgs.fetchurl {
     name = "paper-${paperVersion}-${paperBuild}.jar";
-    url = "https://fill-data.papermc.io/v1/objects/${paperHash}/paper-${paperVersion}-${paperBuild}.jar";
+    url = "https://fill-data.papermc.io/v1/objects/${paperSha256}/paper-${paperVersion}-${paperBuild}.jar";
     curlOptsList = [ "-A" "spring-break-server/1.0 (https://github.com/rej0y/server)" ];
     hash = builtins.convertHash {
-      hash = paperHash;
+      hash = paperSha256;
       hashAlgo = "sha256";
       toHashFormat = "sri";
     };
