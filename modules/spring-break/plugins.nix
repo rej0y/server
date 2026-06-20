@@ -3,7 +3,7 @@
 let
   geyserVersion = "2.10.1";
   geyserBuild = "1172";
-  geyserHash = "sha256-GpNsemmfisJBcY9RMcgRMKqf1IIiRwZFm/Mn+fyjlzU=";
+  geyserHash = "sha256-GpNsemqfisJBcY9RMcgRMKqf1IIiRwZFm/Mn+fyjlzU=";
 
   floodgateVersion = "2.2.5";
   floodgateBuild = "133";
