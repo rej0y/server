@@ -4,7 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/frp.nix
-    ./modules/spring-break.nix
+    ./modules/spring-break
   ];
 
   nix.settings.experimental-features = [
