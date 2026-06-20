@@ -3,11 +3,14 @@
 let
   geyserVersion = "2.10.1";
   geyserBuild = "1172";
-  geyserHash = "1a936c7a6a9f8ac241718f5131c81130aa9fd482224706459bf327f9fca39735";
+  geyserHash = "sha256-GpNsemmfisJBcY9RMcgRMKqf1IIiRwZFm/Mn+fyjlzU=";
 
   floodgateVersion = "2.2.5";
   floodgateBuild = "133";
-  floodgateHash = "46b4eb2d56bdcf1bc8fa1b3e3b538e3d0d19ccc0ca6fea656993f4c2ed4725c6";
+  floodgateHash = "sha256-RrTrLVa9zxvI+hs+O1OOPQ0ZzMDKb+plZZP0wu1HJcY=";
+
+  blockLockerVersion = "1.14.1";
+  blockLockerHash = "sha256-430jmDW0e5GkkQP9kNcREJb6KwD/Dqg1smQaORxkvrk=";
 in
 [
   {
@@ -15,24 +18,23 @@ in
     jar = pkgs.fetchurl {
       name = "Geyser-Spigot-${geyserVersion}-${geyserBuild}.jar";
       url = "https://download.geysermc.org/v2/projects/geyser/versions/${geyserVersion}/builds/${geyserBuild}/downloads/spigot";
-      hash = builtins.convertHash {
-        hash = geyserHash;
-        hashAlgo = "sha256";
-        toHashFormat = "sri";
-      };
+      hash = geyserHash;
     };
   }
-
   {
     fileName = "floodgate-spigot.jar";
     jar = pkgs.fetchurl {
       name = "floodgate-spigot-${floodgateVersion}-${floodgateBuild}.jar";
       url = "https://download.geysermc.org/v2/projects/floodgate/versions/${floodgateVersion}/builds/${floodgateBuild}/downloads/spigot";
-      hash = builtins.convertHash {
-        hash = floodgateHash;
-        hashAlgo = "sha256";
-        toHashFormat = "sri";
-      };
+      hash = floodgateHash;
+    };
+  }
+  {
+    fileName = "blocklocker.jar";
+    jar = pkgs.fetchurl {
+      name = "blocklocker-${blockLockerVersion}.jar";
+      url = "https://hangarcdn.papermc.io/plugins/Rutger/BlockLocker/versions/${blockLockerVersion}/PAPER/blocklocker-${blockLockerVersion}.jar";
+      hash = blockLockerHash;
     };
   }
 ]
