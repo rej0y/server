@@ -43,11 +43,13 @@ let
   };
 in
 {
-  users.groups.spring-break = {};
-  users.users.spring-break = {
-    isSystemUser = true;
-    group = "spring-break";
-    home = server.dir;
+  users = {
+    groups.spring-break = {};
+    users.spring-break = {
+      isSystemUser = true;
+      group = "spring-break";
+      home = server.dir;
+    };
   };
 
   systemd.services.spring-break = {
