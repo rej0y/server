@@ -1,43 +1,36 @@
 { lib, pkgs, ... }:
 
 let
-  paper = {
-    version = "26.1.2";
-    build = "72";
-    sha256 = "0555a0b0468a5198d8fb1a16e1f9e95c81a917a2dc8f2e09867b4044742f6401";
-  };
+  settings = import ./settings.nix { inherit pkgs; };
+  plugins = import ./plugins.nix { inherit pkgs; };
 
-  java = {
-    exec = "${pkgs.jdk25}/bin/java";
-    args = [
-      "-Xmx16G"
-      "-XX:+UseZGC"
-      "-XX:+DisableExplicitGC"
-    ];
-  };
-  
   server = {
     dir = "/var/lib/spring-break";
     jar = pkgs.fetchurl {
-      name = "paper-${paper.version}-${paper.build}.jar";
-      url = "https://fill-data.papermc.io/v1/objects/${paper.sha256}/paper-${paper.version}-${paper.build}.jar";
+      name = "paper-${settings.paper.version}-${settings.paper.build}.jar";
+      url = "https://fill-data.papermc.io/v1/objects/${settings.paper.sha256}/paper-${settings.paper.version}-${settings.paper.build}.jar";
       curlOptsList = [ "-A" "spring-break-server/1.0 (https://github.com/rej0y/server)" ];
       hash = builtins.convertHash {
-        hash = paper.sha256;
+        hash = settings.paper.sha256;
         hashAlgo = "sha256";
         toHashFormat = "sri";
       };
     };
-  };
-
-  plugins = rec {
-    jars = import ./plugins.nix { inherit pkgs; };
-    install = pkgs.writeShellScript "install-plugins" ''
+    init = pkgs.writeShellScript "server-init" ''
       set -eu
+      ${pkgs.coreutils}/bin/install -Dm0644 ${
+        pkgs.writeText "server.properties" (lib.generators.toKeyValue {} settings.properties)
+      } ${server.dir}/server.properties
+
+      ${pkgs.coreutils}/bin/install -Dm0644 ${
+        pkgs.writeText "eula.txt" "eula=${lib.boolToString settings.eula}\n"
+      } ${server.dir}/eula.txt
+
       ${pkgs.coreutils}/bin/mkdir -p ${server.dir}/plugins
-      ${lib.concatMapStringsSep "\n" (plugin: ''
-        ${pkgs.coreutils}/bin/ln -sfT ${plugin.jar} ${server.dir}/plugins/${plugin.fileName}
-      '') jars}
+
+      ${lib.concatMapStringsSep "\n" (
+        plugin: ''${pkgs.coreutils}/bin/ln -sfT ${plugin.jar} ${server.dir}/plugins/${plugin.fileName}''
+      ) plugins}
     '';
   };
 in
@@ -61,8 +54,8 @@ in
       WorkingDirectory = server.dir;
       Restart = "on-failure";
       RestartSec = "15s";
-      ExecStartPre = plugins.install;
-      ExecStart = "${java.exec} ${lib.escapeShellArgs (java.args ++ [ "-jar" server.jar "nogui" ])}";
+      ExecStartPre = server.init;
+      ExecStart = "${settings.java.version}/bin/java ${lib.escapeShellArgs (settings.java.args ++ [ "-jar" server.jar "nogui" ])}";
       SuccessExitStatus = "0 143";
     };
   };
