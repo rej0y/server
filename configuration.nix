@@ -26,7 +26,7 @@
   users.users = {
     rej0y = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "spring-break" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINpkmA0Ako1CSQTj2grWHPC55etVCaepAIs+qv9ljbAF rej0y@charity"
       ];
@@ -34,7 +34,7 @@
 
     parker = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "spring-break" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICwYFeAu1vbmcNSkQFCkfV25SURDBXJ+fERL2cbgUcaL parker@altruist"  
       ];

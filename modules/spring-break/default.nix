@@ -19,11 +19,11 @@ let
     init = pkgs.writeShellScript "server-init" ''
       set -eu
 
-      ${pkgs.coreutils}/bin/install -Dm0644 ${
+      ${pkgs.coreutils}/bin/install -Dm0640 ${
         pkgs.writeText "server.properties" (lib.generators.toKeyValue {} settings.properties)
       } ${server.dir}/server.properties
 
-      ${pkgs.coreutils}/bin/install -Dm0644 ${
+      ${pkgs.coreutils}/bin/install -Dm0640 ${
         pkgs.writeText "eula.txt" "eula=${lib.boolToString settings.eula}\n"
       } ${server.dir}/eula.txt
 
@@ -54,8 +54,8 @@ in
       User = "spring-break";
       Group = "spring-break";
       StateDirectory = "spring-break";
-      StateDirectoryMode = "0700";
-      UMask = "0077";
+      StateDirectoryMode = "0750";
+      UMask = "0027";
       WorkingDirectory = server.dir;
       Restart = "on-failure";
       RestartSec = "15s";
