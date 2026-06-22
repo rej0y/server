@@ -3,8 +3,8 @@
 let
   geyser = {
     version = "2.10.1";
-    build = "1172";
-    hash = "sha256-GpNsemqfisJBcY9RMcgRMKqf1IIiRwZFm/Mn+fyjlzU=";
+    build = "1174";
+    hash = "sha256-rwF1i84cgpUBw4XP/CDSkigNDCxkDJ0VsKvthE/twkw=";
   };
 
   floodgate = {
