@@ -13,6 +13,7 @@
       "-Xmx16G"
       "-XX:+UseZGC"
       "-XX:+DisableExplicitGC"
+      "-DGeyser.RakRateLimitingDisabled=true"
     ];
   };
 
