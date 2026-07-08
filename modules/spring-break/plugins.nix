@@ -3,14 +3,14 @@
 let
   geyser = {
     version = "2.10.1";
-    build = "1174";
-    hash = "sha256-rwF1i84cgpUBw4XP/DKSkigNDCxkDJ0VsKvthE/txkw=";
+    build = "1183";
+    hash = "sha256-dhnGI5yG+DwGJpTdkEB+sJx35TaBkR3mvqIsoQ5cC/w=";
   };
 
   floodgate = {
     version = "2.2.5";
-    build = "133";
-    hash = "sha256-RrTrLVa9zxvI+hs+O1OOPQ0ZzMDKb+plaZP0wu1HJcY=";
+    build = "138";
+    hash = "sha256-RL25COL7T/G5dNUxPQSKYlohVVqYRM+4Ylapjo4ca9E=";
   };
 
   blockLocker = {
