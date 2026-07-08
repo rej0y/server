@@ -3,8 +3,8 @@
 {
   paper = {
     version = "26.1.2";
-    build = "72";
-    sha256 = "0555a0b0468a5198d8fb1a16e1f9e95c81a917a2dc8f2e09867b4044742f6401";
+    build = "74";
+    sha256 = "1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7";
   };
 
   java = {
