@@ -7,10 +7,25 @@
     ./modules/spring-break
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix = {
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
+
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
+  };
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -68,7 +83,6 @@
   };
 
   time.timeZone = "America/Boise";
-  
+
   system.stateVersion = "26.05";
 }
-
