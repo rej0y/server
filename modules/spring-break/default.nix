@@ -3,7 +3,6 @@
 let
   settings = import ./settings.nix { inherit pkgs; };
   plugins = import ./plugins.nix { inherit pkgs; };
-
   server = {
     dir = "/var/lib/spring-break";
     jar = pkgs.fetchurl {
@@ -18,19 +17,14 @@ let
     };
     init = pkgs.writeShellScript "server-init" ''
       set -eu
-
       ${pkgs.coreutils}/bin/install -Dm0640 ${
         pkgs.writeText "server.properties" (lib.generators.toKeyValue {} settings.properties)
       } ${server.dir}/server.properties
-
       ${pkgs.coreutils}/bin/install -Dm0640 ${
         pkgs.writeText "eula.txt" "eula=${lib.boolToString settings.eula}\n"
       } ${server.dir}/eula.txt
-
       ${pkgs.coreutils}/bin/mkdir -p ${server.dir}/plugins
-
       ${pkgs.findutils}/bin/find ${server.dir}/plugins -maxdepth 1 -type l -name '*.jar' -delete
-
       ${lib.concatMapStringsSep "\n" (
         plugin: ''${pkgs.coreutils}/bin/ln -sfT ${plugin.jar} ${server.dir}/plugins/${plugin.fileName}''
       ) plugins}
