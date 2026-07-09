@@ -3,10 +3,8 @@
 let
   settings = import ./settings.nix { inherit pkgs; };
   plugins = import ./plugins.nix { inherit pkgs; };
-
   server = {
     dir = "/var/lib/spring-break";
-
     jar = pkgs.fetchurl {
       name = "paper-${settings.paper.version}-${settings.paper.build}.jar";
       url = "https://fill-data.papermc.io/v1/objects/${settings.paper.sha256}/paper-${settings.paper.version}-${settings.paper.build}.jar";
@@ -17,7 +15,6 @@ let
         toHashFormat = "sri";
       };
     };
-
     init = pkgs.writeShellScript "server-init" ''
       set -eu
       ${pkgs.coreutils}/bin/install -Dm0640 ${
@@ -43,7 +40,6 @@ in
       home = server.dir;
     };
   };
-
   systemd.services.spring-break = {
     description = "Spring Break Minecraft Server";
     wantedBy = [ "multi-user.target" ];
